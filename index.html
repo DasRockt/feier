@@ -12,7 +12,7 @@ body, html {
   width:100%;
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(180deg,#001219 0%,#02121a 100%);
-  overflow-y: auto; /* ✅ Scrollen auf Handy erlaubt */
+  overflow-y: auto; /* ✅ Scrollen erlaubt */
   position: relative;
   color: #fff;
 }
@@ -20,13 +20,14 @@ body, html {
 /* Formular-Wrapper */
 #formWrapper {
   margin: 20px auto;
-  max-width: 600px; /* ✅ besser für Smartphone */
+  max-width: 600px;
   width: 95%;
   background: rgba(255,255,255,0.05);
   border-radius: 20px;
   padding:20px;
   text-align:center;
-  z-index:10;
+  z-index: 100; /* ✅ immer im Vordergrund */
+  position: relative;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   color: #fff;
 }
@@ -61,16 +62,14 @@ input[type="text"]{width:100%;padding:8px;border-radius:8px;border:1px solid rgb
 
 footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
 
-/* Fliegende Icons */
-.fly, .snowflake{
+/* Fliegende Icons & Schnee */
+.fly, .snowflake, .spotlight{
   position:absolute;
-  z-index:5;
+  z-index: 1; /* hinter Formular */
   user-select:none;
-  pointer-events:none;
+  pointer-events:none; /* ✅ blockiert keine Klicks */
   font-size:24px;
 }
-
-/* Schneeflocken hellblau */
 .snowflake { color: #87cefa; }
 
 /* Popup */
@@ -104,16 +103,6 @@ footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
   cursor:pointer;
   background:linear-gradient(180deg,#ffd27a,#ff8f3c);
   font-weight:bold;
-}
-
-/* Neon Spots */
-.spotlight{
-  position:absolute;
-  border-radius:50%;
-  width:250px; height:350px;
-  filter: blur(50px);
-  opacity:0.4;
-  z-index:1;
 }
 
 /* Lade-Spinner */
@@ -154,7 +143,7 @@ footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
   .options {
     flex-direction: column;
     gap: 8px;
-    align-items: center; /* ✅ sorgt für zentrierte Ja/Nein-Buttons */
+    align-items: center; /* ✅ Ja/Nein zentriert */
   }
   .button {
     width: 100%;
@@ -354,4 +343,3 @@ for(let i=0;i<6;i++){
 </script>
 </body>
 </html>
-
