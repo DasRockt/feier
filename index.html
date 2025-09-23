@@ -12,26 +12,23 @@ body, html {
   width:100%;
   font-family: Arial, Helvetica, sans-serif;
   background: linear-gradient(180deg,#001219 0%,#02121a 100%);
-  overflow:hidden;
+  overflow-y: auto; /* ✅ Scrollen auf Handy erlaubt */
   position: relative;
-  color: #fff; /* Textfarbe weiß */
+  color: #fff;
 }
 
-/* Zentriertes Formular */
+/* Formular-Wrapper */
 #formWrapper {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  max-width:1000px;
-  width:90%;
+  margin: 20px auto;
+  max-width: 600px; /* ✅ besser für Smartphone */
+  width: 95%;
   background: rgba(255,255,255,0.05);
   border-radius: 20px;
-  padding:30px;
+  padding:20px;
   text-align:center;
   z-index:10;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  color: #fff; /* Textfarbe innerhalb Formular */
+  color: #fff;
 }
 
 .header{
@@ -123,7 +120,7 @@ footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
 #loadingSpinner {
   position: fixed;
   top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.95); /* fast undurchsichtig */
+  background: rgba(0,0,0,0.95);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,12 +129,7 @@ footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
-#loadingSpinner.show {
-  visibility: visible;
-  opacity: 1;
-}
-
+#loadingSpinner.show { visibility: visible; opacity: 1; }
 .spinner {
   width: 60px;
   height: 60px;
@@ -146,10 +138,31 @@ footer{text-align:center;margin-top:12px;font-size:0.85rem;color:#fff}
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+@keyframes spin {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* ✅ Smartphone Optimierung */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .brand {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+  .options {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  input[type="text"] {
+    font-size: 1rem;
+    padding: 10px;
+  }
 }
 </style>
 </head>
@@ -291,7 +304,7 @@ form.addEventListener('submit', async (e)=>{
   }
 });
 
-// Animierte Weihnachtsicons vom unteren Rand nach oben
+// Animierte Weihnachtsicons
 const icons=["🎅","🎄"];
 function flyIcon(){
   const el=document.createElement('div');
@@ -309,7 +322,7 @@ function flyIcon(){
 }
 setInterval(flyIcon,400);
 
-// Schneeflocken hellblau von oben nach unten
+// Schneeflocken
 function createSnowflake(){
   const flake=document.createElement('div');
   flake.className='snowflake';
